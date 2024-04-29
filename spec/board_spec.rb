@@ -33,5 +33,10 @@ describe Board do
         expect(new_board.put_piece('w', 1, 7)).to eql('Invalid Move')
       end
     end
+
+    it 'restrict if there is already existing piece' do
+      new_board.put_piece('existing piece', 0, 3)
+      expect(new_board.put_piece('w', 0, 3)).to eql('Already Occupied')
+    end
   end
 end
