@@ -10,10 +10,11 @@ class Board
     Array.new(size[0]) { Array.new(size[1]) }
   end
 
-  def put_piece(piece_value, yval, xval)
-    return 'Invalid Move' if yval.negative? || yval >= size[0] || xval.negative? || xval >= size[1]
-    return 'Already Occupied' if occupied_spaces[[yval, xval]]
+  def drop_piece(piece, column)
+    cage.each do |row|
+      return row[column] = piece unless row[column]
+    end
 
-    occupied_spaces[[yval, xval]] = piece_value
+    false
   end
 end
