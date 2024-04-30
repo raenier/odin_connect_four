@@ -6,6 +6,21 @@ describe Board do
     it 'sets board size' do
       expect(new_board.size).to eql [6, 7]
     end
+
+    context 'on setting up cage' do
+      it 'returns array' do
+        expect(new_board.cage).to be_an Array
+      end
+
+      it 'creates cage height based on board size' do
+        expect(new_board.cage.size).to eql(6)
+      end
+
+      it 'creates cage width based on board size' do
+        expect(new_board.cage.last).to be_an Array
+        expect(new_board.cage.last.size).to eql(7)
+      end
+    end
   end
 
   describe '#put_piece' do

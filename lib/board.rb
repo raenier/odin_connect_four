@@ -1,9 +1,13 @@
 class Board
-  attr_accessor :size, :occupied_spaces
+  attr_accessor :size, :cage
 
   def initialize(yval, xval)
     self.size = [yval, xval]
-    self.occupied_spaces = {}
+    self.cage = set_cage
+  end
+
+  def set_cage
+    Array.new(size[0]) { Array.new(size[1]) }
   end
 
   def put_piece(piece_value, yval, xval)
