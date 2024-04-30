@@ -17,4 +17,19 @@ class Board
 
     false
   end
+
+  def display
+    inner_string = "|---+---+---+---+---+---+---|\n"
+
+    cage.reverse_each do |row|
+      inner_string += '|'
+      row.each do |piece|
+        piece ||= ' '
+        inner_string += " #{piece} |"
+      end
+      inner_string += "\n|---+---+---+---+---+---+---|\n"
+    end
+
+    puts inner_string
+  end
 end
