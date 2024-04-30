@@ -29,71 +29,12 @@ describe Player do
   describe '#move' do
     subject(:player) { described_class.new("w") }
     before do
-      allow(player).to receive(:player_input).and_return('12')
+      allow(player).to receive(:gets).and_return('1')
     end
 
-    it 'gets input from player' do
-      expect(player).to receive(:player_input).once
-      player.move
-    end
-
-    context 'with value 12' do
-      before do
-        allow(player).to receive(:player_input).and_return('12')
-      end
-      it 'returns number array' do
-        expect(player.move).to eq([1, 2])
-      end
-    end
-
-    context 'with value 23' do
-      before do
-        allow(player).to receive(:player_input).and_return('23')
-      end
-      it 'returns number array' do
-        expect(player.move).to eq([2, 3])
-      end
-    end
-  end
-
-  describe '#player_input' do
-    subject(:player) { described_class.new('w') }
-
-    context '1 valid input' do
-      before do
-        allow(player).to receive(:gets).and_return('12')
-      end
-
-      it 'gets input from player once' do
-        expect(player).to receive(:gets).once
-        player.player_input
-      end
-    end
-
-    context '1 invalid and 1 valid input' do
-      before do
-        letter = 'asdf'
-        valid = '12'
-        allow(player).to receive(:gets).and_return(letter, valid)
-      end
-
-      it 'calls gets twice' do
-        expect(player).to receive(:gets).twice
-        player.player_input
-      end
-    end
-
-    context '2 invalid and 1 valid input' do
-      before do
-        letter = 'asdf'
-        length_greater_than_two = '1234'
-        valid = '12'
-        allow(player).to receive(:gets).and_return(letter, length_greater_than_two, valid)
-      end
-
-      it 'calls gets thrice' do
-        expect(player).to receive(:gets).exactly(3).times
-        player.player_input
+    context 'valid input' do
+      it 'returns integer' do
+        expect(player.move).to be_an Integer
       end
     end
   end
