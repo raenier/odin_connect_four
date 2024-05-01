@@ -20,7 +20,7 @@ describe Game do
       allow_any_instance_of(Board).to receive(:full?).and_return(false, false, true)
       allow_any_instance_of(Player).to receive(:move).and_return('1', '2', '1', '2')
       allow_any_instance_of(Player).to receive(:piece).and_return('x', 'y', 'x', 'y')
-      allow(game.board).to receive(:drop_piece)
+      allow(game.board).to receive(:drop_piece).and_return(false, true)
       allow(game.board).to receive(:display)
     end
 
@@ -29,14 +29,14 @@ describe Game do
     end
 
     it 'gets players move and piece until board is full' do
-      expect(game.players.first).to receive(:move).twice
+      expect(game.players.first).to receive(:move).thrice
       expect(game.players.last).to receive(:move).twice
-      expect(game.players.first).to receive(:piece).twice
+      expect(game.players.first).to receive(:piece).thrice
       expect(game.players.last).to receive(:piece).twice
     end
 
     it 'drops piece into board until board is full' do
-      expect(game.board).to receive(:drop_piece).exactly(4).times
+      expect(game.board).to receive(:drop_piece).exactly(5).times
     end
 
     it 'displays board every move' do

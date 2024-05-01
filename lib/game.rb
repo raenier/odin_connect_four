@@ -16,7 +16,7 @@ class Game
 
     until board.full?
       players.each do |player|
-        board.drop_piece player.piece, player.move
+        loop { break if board.drop_piece(player.piece.slice(0), player.move) }
         board.display
       end
     end
