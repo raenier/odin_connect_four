@@ -1,5 +1,5 @@
-require 'board'
-require 'player'
+require_relative 'board'
+require_relative 'player'
 
 class Game
   attr_reader :board, :players
