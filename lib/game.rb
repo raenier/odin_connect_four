@@ -10,4 +10,13 @@ class Game
     @board = Board.new(*BOARD_SIZE)
     @players = [Player.new('white'), Player.new('black')]
   end
+
+  def start
+    until board.full?
+      players.each do |player|
+        board.drop_piece player.piece, player.move
+        board.display
+      end
+    end
+  end
 end
