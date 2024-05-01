@@ -20,5 +20,7 @@ class Game
         board.display
       end
     end
+
+    puts 'Game is draw!' if board.full?
   end
 end
