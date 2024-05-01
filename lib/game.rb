@@ -12,6 +12,8 @@ class Game
   end
 
   def start
+    puts "Game starts now, put your piece #{players.first.piece} player!"
+
     until board.full?
       players.each do |player|
         board.drop_piece player.piece, player.move
