@@ -11,6 +11,8 @@ class Board
   end
 
   def drop_piece(piece, column)
+    return false if column >= size[1]
+
     cage.each do |row|
       return row[column] = piece unless row[column]
     end

@@ -47,6 +47,12 @@ describe Board do
         expect(new_board.drop_piece('w', 5)).to be(false)
       end
     end
+
+    context 'dropping outside of board size' do
+      it 'returns false' do
+        expect(new_board.drop_piece('w', 7)).to be false
+      end
+    end
   end
 
   describe '#full?' do
