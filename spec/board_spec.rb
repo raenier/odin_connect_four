@@ -48,4 +48,18 @@ describe Board do
       end
     end
   end
+
+  describe '#full?' do
+    subject(:new_board) { described_class.new(6, 7) }
+
+    it 'returns true if board is full' do
+      new_board.cage = Array.new(1) { Array.new(7, 'x') }
+
+      expect(new_board.full?).to be true
+    end
+
+    it 'returns false if board is not full' do
+      expect(new_board.full?).to be false
+    end
+  end
 end

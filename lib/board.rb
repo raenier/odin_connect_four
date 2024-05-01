@@ -32,4 +32,10 @@ class Board
 
     puts inner_string
   end
+
+  def full?
+    return false if cage.last.any?(&:nil?)
+
+    true
+  end
 end
