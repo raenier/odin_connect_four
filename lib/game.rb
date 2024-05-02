@@ -16,11 +16,33 @@ class Game
 
     until board.full?
       players.each do |player|
-        loop { break if board.drop_piece(player.piece.slice(0), player.move) }
+        move = []
+        loop do
+          move = [player.piece.slice(0), player.move]
+          break if board.drop_piece(*move)
+        end
         board.display
+
+        return puts("#{move[0]} wins the game!") if win?(*move)
       end
     end
 
     puts 'Game is draw!' if board.full?
+  end
+
+  def win?(piece, column)
+    check_vertical(piece, column)
+  end
+
+  def check_vertical(piece, column)
+    total =
+      board.cage.reduce(0) do |sum, row|
+        next sum if row[column].nil?
+        break if row[column] != piece
+
+        sum + 1
+      end
+
+    total == 4 ? true : false
   end
 end

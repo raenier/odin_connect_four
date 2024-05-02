@@ -22,6 +22,7 @@ describe Game do
       allow_any_instance_of(Player).to receive(:piece).and_return('x', 'y', 'x', 'y')
       allow(game.board).to receive(:drop_piece).and_return(false, true)
       allow(game.board).to receive(:display)
+      allow(subject).to receive(:win?)
     end
 
     after :each do
@@ -41,6 +42,27 @@ describe Game do
 
     it 'displays board every move' do
       expect(game.board).to receive(:display).and_return('').exactly(4).times
+    end
+  end
+
+  describe '#win?' do
+    subject(:game) { Game.new }
+
+    context 'vertical check' do
+      before :each do
+        game.board.drop_piece('w', 0)
+        game.board.drop_piece('w', 0)
+        game.board.drop_piece('w', 0)
+        game.board.drop_piece('w', 0)
+      end
+
+      it 'returns true if 4 lines of same piece line up' do
+        expect(game.win?('w', 0)).to be true
+      end
+
+      it 'returns false if no 4 pieces line up' do
+        expect(game.win?('w', 1)).to be false
+      end
     end
   end
 end
