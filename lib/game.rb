@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'board'
 require_relative 'player'
 
@@ -43,6 +45,6 @@ class Game
         sum + 1
       end
 
-    total == 4 ? true : false
+    total == 4
   end
 end

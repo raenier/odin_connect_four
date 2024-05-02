@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'board'
 
 describe Board do
@@ -44,7 +46,7 @@ describe Board do
       end
 
       it 'returns false' do
-        expect(new_board.drop_piece('w', 5)).to be(false)
+        expect(new_board.drop_piece('w', 5)).to be false
       end
     end
 
