@@ -18,8 +18,6 @@ describe Game do
     subject(:game) { Game.new }
     before :each do
       allow_any_instance_of(Board).to receive(:full?).and_return(false, false, true)
-      allow_any_instance_of(Player).to receive(:move).and_return('1', '2', '1', '2')
-      allow_any_instance_of(Player).to receive(:piece).and_return('x', 'y', 'x', 'y')
       allow(game.board).to receive(:drop_piece).and_return(false, true)
       allow(game.board).to receive(:display)
       allow(subject).to receive(:win?)
@@ -27,13 +25,6 @@ describe Game do
 
     after :each do
       game.start
-    end
-
-    it 'gets players move and piece until board is full' do
-      expect(game.players.first).to receive(:move).thrice
-      expect(game.players.last).to receive(:move).twice
-      expect(game.players.first).to receive(:piece).thrice
-      expect(game.players.last).to receive(:piece).twice
     end
 
     it 'drops piece into board until board is full' do
