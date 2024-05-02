@@ -21,8 +21,9 @@ class Board
   end
 
   def display
-    inner_string = "|---+---+---+---+---+---+---|\n"
+    system 'clear'
 
+    inner_string = "|---+---+---+---+---+---+---|\n"
     cage.reverse_each do |row|
       inner_string += '|'
       row.each do |piece|
